@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta charset="Shift_JIS">
+</head>
+
+<wicket:link>
+    <link rel="stylesheet" type="text/css" href="BasePage.css"/>
+</wicket:link>
+
+
+<!---------------------------------------- ヘッダ ----------------------------------------->
+<div id="header">
+
+	<form wicket:id="headerForm">
+		<input wicket:id="headerHome" type="submit" value="HOME"/>
+		<input wicket:id="headerLogin" type="submit" value="LOGIN"/>
+	</form>
+
+	<!-- エラーメッセージ -->
+	<span wicket:id="errorMessage"> error message will be here </span>
+
+</div>
+<!---------------------------------------- ヘッダ ----------------------------------------->
+
+
+<div id="body">
+	<wicket:child>
+      ここに本文が入ります。
+	</wicket:child>
+</div>
+
+
+<!---------------------------------------- フッタ ----------------------------------------->
+<div id="footer">
+
+	<form wicket:id="footerForm">
+		<input wicket:id="footerHome" type="submit" value="HOME"/>
+	</form>
+
+</div>
+<!---------------------------------------- フッタ ----------------------------------------->
+
+
+</html>

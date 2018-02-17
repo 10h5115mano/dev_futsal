@@ -1,0 +1,5 @@
+package com.wicket_futsal.common;
+
+public class PassDigest {
+
+}

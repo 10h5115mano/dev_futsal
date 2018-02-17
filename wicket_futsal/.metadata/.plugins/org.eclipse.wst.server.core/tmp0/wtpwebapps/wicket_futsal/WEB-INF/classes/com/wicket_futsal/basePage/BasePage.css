@@ -1,0 +1,21 @@
+
+body{
+	background-color:#B0C4DE;
+}
+
+a#headerHome{
+	color:white;
+}
+
+a#footerHome{
+	color:white;
+	position: absolute;
+	bottom: 80px;
+}
+
+span#title{
+	color:white;
+	text-shadow: 2px 2px 1px black;
+	font-family: Comic Sans MS,cursive;
+
+}
