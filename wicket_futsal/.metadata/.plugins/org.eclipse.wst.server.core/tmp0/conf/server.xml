@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
 
-      <Context docBase="C:\workspaces\wicket_futsal\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\workspaces\wicket_futsal\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\wicket_futsal" path="/wicket_futsal" reloadable="true" source="org.eclipse.jst.jee.server:wicket_futsal"/></Host>
+      <Context docBase="C:\git\dev_futsal\wicket_futsal\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\git\dev_futsal\wicket_futsal\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\wicket_futsal" path="/wicket_futsal" reloadable="true" source="org.eclipse.jst.jee.server:wicket_futsal"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -16,7 +16,7 @@ import com.wicket_futsal.login.LoginPage;
 /**
  * 共通テンプレート用のページクラスです。
  *
- * @author mano
+ * @author namiki
  *
  */
 public abstract class BasePage extends WebPage implements Serializable {
