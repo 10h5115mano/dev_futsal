@@ -20,4 +20,10 @@
 <fullyQualifiedTypeName name="org.apache.wicket.model.Model"/>
 <fullyQualifiedTypeName name="org.apache.wicket.model.IModel"/>
 <fullyQualifiedTypeName name="org.apache.wicket.markup.html.basic.Label"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
 </qualifiedTypeNameHistroy>

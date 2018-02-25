@@ -25,12 +25,27 @@ public abstract class BasePage extends WebPage implements Serializable {
 	private static final Logger logger = Logger.getLogger(BasePage.class
 			.getName());
 
+	/** 共通クラス ログインID */
+	private String loginId;
+
+	public BasePage() {
+		basePage();
+	}
+
+	public BasePage(final PageParameters params) {
+		basePage();
+	}
+
 	/** エラーメッセージ */
 	private FeedbackPanel errorMessage = new FeedbackPanel("errorMessage");
 
 	/** ヘッダ用フォーム */
 	@SuppressWarnings("rawtypes")
 	private Form headerForm = new Form("headerForm");
+
+	/** フッタ用フォーム */
+	@SuppressWarnings("rawtypes")
+	private Form footerForm = new Form("footerForm");
 
 	/** ヘッダホームボタン */
 	private Button headerHomeButton = new Button("headerHome") {
@@ -62,10 +77,6 @@ public abstract class BasePage extends WebPage implements Serializable {
 
 	};
 
-	/** フッタ用フォーム */
-	@SuppressWarnings("rawtypes")
-	private Form footerForm = new Form("footerForm");
-
 	/** フッタホームボタン */
 	private Button footerHomeButton = new Button("footerHome") {
 		private static final long serialVersionUID = 6739382416550965963L;
@@ -79,15 +90,21 @@ public abstract class BasePage extends WebPage implements Serializable {
 		}
 	};
 
-	/** 共通クラス ログインID */
-	private String loginId;
+	/**
+	 * ヘッダ・フッタ用 ホームボタン
+	 */
+	public void onSubmitHomeButton() {
+		String loginId = this.getLoginId();
 
-	public BasePage() {
-		basePage();
-	}
+		if (null != loginId) {
+			PageParameters parameters = new PageParameters();
+			parameters.add("userId", loginId);
+			HomePage homePage = new HomePage(parameters);
 
-	public BasePage(final PageParameters params) {
-		basePage();
+			setResponsePage(homePage);
+		} else {
+			setResponsePage(HomePage.class);
+		}
 	}
 
 	/**
@@ -119,23 +136,6 @@ public abstract class BasePage extends WebPage implements Serializable {
 	 */
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
-	}
-
-	/**
-	 * ヘッダ・フッタ用 ホームボタン
-	 */
-	public void onSubmitHomeButton() {
-		String loginId = this.getLoginId();
-
-		if (null != loginId) {
-			PageParameters parameters = new PageParameters();
-			parameters.add("userId", loginId);
-			HomePage homePage = new HomePage(parameters);
-
-			setResponsePage(homePage);
-		} else {
-			setResponsePage(HomePage.class);
-		}
 	}
 
 }

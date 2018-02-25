@@ -2,6 +2,7 @@ package com.wicket_futsal.login;
 
 import java.util.logging.Logger;
 
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -10,7 +11,6 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.wicket_futsal.basePage.BasePage;
 import com.wicket_futsal.common.Constants;
 import com.wicket_futsal.dto.UserDTO;
 import com.wicket_futsal.home.HomePage;
@@ -21,7 +21,7 @@ import com.wicket_futsal.home.HomePage;
  * @author mano
  *
  */
-public class LoginPage extends BasePage {
+public class LoginPage  extends WebPage {
 	private static final long serialVersionUID = 3144355108108420192L;
 
 	private static final Logger logger = Logger.getLogger(LoginPage.class

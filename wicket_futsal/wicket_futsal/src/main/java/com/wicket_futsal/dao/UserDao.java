@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
-import com.wicket_futsal.common.ResultSetConverter;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import com.wicket_futsal.dto.UserDTO;
 
 public class UserDao extends BaseDao {
@@ -64,45 +68,23 @@ public class UserDao extends BaseDao {
 	 * ログインユーザのユーザ情報を取得する。
 	 *
 	 * @param ユーザID
-	 *            LoginDTO
-	 * @return ユーザ情報 LoginDTO
+	 * @return ユーザ情報 Map
 	 * @throws SQLException
 	 */
-	@SuppressWarnings("unchecked")
-	public UserDTO selectUser(UserDTO dto) throws SQLException {
+	public Map<String, Object> selectUser(UserDTO dto) throws SQLException {
 
-		ResultSet rs = null;
-		PreparedStatement pstmt = null;
+		// ★設定ファイルを元に、 SqlSessionFactory を作成する
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder()
+				.build(mybatisConfig);
 
-		String sql = "SELECT PASSWORD FROM M_USER WHERE USER_ID = ?;";
+		Map<String, Object> result;
 
-		UserDTO resultDto = new UserDTO();
-
-		pstmt = conn.prepareStatement(sql);
-
-		// ログインID
-		pstmt.setString(1, dto.getUserId());
-
-		rs = pstmt.executeQuery();
-
-		if (rs.next()) {
-
-			try {
-				@SuppressWarnings({ "rawtypes" })
-				ResultSetConverter rsConverter = new ResultSetConverter(rs,
-						resultDto.getClass());
-
-				resultDto = (UserDTO) rsConverter.toDTO(rs, resultDto);
-
-			} catch (Exception e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-			return resultDto;
-
+		// ★SqlSessionFactory から SqlSession を生成する
+		try (SqlSession session = factory.openSession()) {
+			// ★SqlSession を使って SQL を実行する
+			result = session
+					.selectOne("futsal.mybatis.selectUser", dto);
 		}
-
-		return null;
+		return result;
 	}
-
 }

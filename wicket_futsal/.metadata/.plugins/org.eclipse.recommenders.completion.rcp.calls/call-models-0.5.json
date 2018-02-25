@@ -23,5 +23,15 @@
     "location": "C:\\Users\\User\\.m2\\repository\\org\\apache\\wicket\\wicket-util\\6.26.0\\wicket-util-6.26.0.jar",
     "status": "UNRESOLVED",
     "error": "No call model found for \u0027C:\\Users\\User\\.m2\\repository\\org\\apache\\wicket\\wicket-util\\6.26.0\\wicket-util-6.26.0.jar\u0027. Neither fingerprint \u00277f635c52a145b51f33693a92cd41f5e404580f5c\u0027 nor symbolic name \u0027org.apache.wicket.util\u0027 are known."
+  },
+  "C:\\git\\dev_futsal\\wicket_futsal\\wicket_futsal\\src\\main\\webapp\\WEB-INF\\lib\\mybatis-3.4.5.jar": {
+    "location": "C:\\git\\dev_futsal\\wicket_futsal\\wicket_futsal\\src\\main\\webapp\\WEB-INF\\lib\\mybatis-3.4.5.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\git\\dev_futsal\\wicket_futsal\\wicket_futsal\\src\\main\\webapp\\WEB-INF\\lib\\mybatis-3.4.5.jar\u0027. Neither fingerprint \u0027c832accbf38994bfa09f755326f2d32dbf2f0150\u0027 nor symbolic name \u0027org.mybatis.mybatis\u0027 are known."
+  },
+  "C:\\pleiades-e4.3-java-jre_20140321\\pleiades\\java\\7\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\pleiades-e4.3-java-jre_20140321\\pleiades\\java\\7\\lib\\rt.jar",
+    "status": "RESOLVED"
   }
 }

@@ -37,6 +37,9 @@ public class UserDTO {
 	/** 登録者 */
 	private String insertUser;
 
+	/** 削除フラグ */
+	private char deleteFlg;
+
 	/**
 	 * @return userId
 	 */
@@ -189,5 +192,19 @@ public class UserDTO {
 	 */
 	public void setInsertUser(String insertUser) {
 		this.insertUser = insertUser;
+	}
+
+	/**
+	 * @return deleteFlg
+	 */
+	public char getDeleteFlg() {
+		return deleteFlg;
+	}
+
+	/**
+	 * @param deleteFlg セットする deleteFlg
+	 */
+	public void setDeleteFlg(char deleteFlg) {
+		this.deleteFlg = deleteFlg;
 	}
 }

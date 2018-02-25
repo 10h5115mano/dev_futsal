@@ -1,10 +1,14 @@
 package com.wicket_futsal.dao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class BaseDao {
+
+	/** 設定ファイル */
+	InputStream mybatisConfig = BaseDao.class.getResourceAsStream("/mybatis-config.xml");
 
 	/** 接続先DB */
 	private static final String dbPath = "jdbc:postgresql://localhost:5432/fcs";

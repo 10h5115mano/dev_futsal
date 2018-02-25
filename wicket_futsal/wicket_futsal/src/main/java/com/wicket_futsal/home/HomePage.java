@@ -32,10 +32,10 @@ public class HomePage extends BasePage {
 	private static HomePageService service = new HomePageService();
 
 	/** 次回予定日 */
-	public Label nextEventDayLabel = new Label("nextEventDay", "日付：2018/2/20(土)");
+	public Label nextEventDayLabel;
 
 	/** 次回予定時間 */
-	public Label nextEventTime = new Label("nextEventTime", "時間：15:00～17:00");
+	public Label nextEventTime;
 
 	/**
 	 * ホーム画面コンストラクタ
@@ -46,12 +46,6 @@ public class HomePage extends BasePage {
 
 		// Page Title
 		add(titleLabel);
-
-		// 次回予定日
-		add(nextEventDayLabel);
-
-		// 次回予定時間
-		add(nextEventTime);
 
 		logger.info(Constants.INFO + "ホームページを表示します。");
 
@@ -69,6 +63,19 @@ public class HomePage extends BasePage {
 
 			service.execute();
 		}
+
+		/** 次回予定日 */
+		nextEventDayLabel = new Label("nextEventDay", "日付：2018/2/20(土)");
+
+		/** 次回予定時間 */
+		nextEventTime = new Label("nextEventTime", "時間：15:00～17:00");
+
+		// 次回予定日
+		add(nextEventDayLabel);
+
+		// 次回予定時間
+		add(nextEventTime);
+
 
 	}
 }

@@ -2,6 +2,7 @@ package com.wicket_futsal.login;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -31,18 +32,18 @@ public class LoginService extends BaseService {
 
 		logger.info(Constants.INFO + "LoginService.loginCheck:start");
 
-		UserDTO resultDto = null;
+		Map<String, Object> result = null;
 
 		String inputPass = "";
 
 		try {
-			resultDto = loginDao.selectUser(dto);
-		} catch (SQLException e) {
+			result = loginDao.selectUser(dto);
+		} catch (SQLException e1) {
 			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 
-		if (null != resultDto) {
+		if (result.size() == 1) {
 
 			try {
 				inputPass = PassDigest
@@ -52,7 +53,7 @@ public class LoginService extends BaseService {
 				e.printStackTrace();
 			}
 
-			if (inputPass.equals((String) resultDto.getPassword())) {
+			if (inputPass.equals((String) result.get("password"))) {
 				logger.info(Constants.INFO + "ログイン成功");
 				logger.info(Constants.INFO + "LoginService.loginCheck:end");
 				return true;
