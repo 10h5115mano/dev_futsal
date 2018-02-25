@@ -1,11 +1,12 @@
 package com.wicket_futsal.home;
 
+import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Logger;
-
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.wicket_futsal.basePage.BaseService;
 import com.wicket_futsal.common.Constants;
+import com.wicket_futsal.dao.EventDao;
 
 public class HomePageService extends BaseService {
 
@@ -15,14 +16,23 @@ public class HomePageService extends BaseService {
 	private static final Logger logger = Logger.getLogger(HomePageService.class
 			.getName());
 
-	public PageParameters execute() {
-		PageParameters result = new PageParameters();
+	private static EventDao eventDao = new EventDao();
+
+	public Map<String, Object> execute() {
 
 		logger.info(Constants.INFO + "HomePageService.execute:start");
 
+		Map<String, Object> nextEventInfo = null;
+		try {
+			nextEventInfo = eventDao.selectNextEvent();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
 		logger.info(Constants.INFO + "HomePageService.execute:end");
 
-		return result;
+		return nextEventInfo;
 	}
 
 }

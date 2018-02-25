@@ -1,5 +1,6 @@
 package com.wicket_futsal.home;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -31,6 +32,8 @@ public class HomePage extends BasePage {
 	/** Serviseクラス */
 	private static HomePageService service = new HomePageService();
 
+	public Map<String, Object> nextEventInfo;
+
 	/** 次回予定日 */
 	public Label nextEventDayLabel;
 
@@ -55,20 +58,23 @@ public class HomePage extends BasePage {
 
 			// 未ログイン処理
 			baseService.notLoginExecute(parameters);
+
 		} else {
 
 			// ログインユーザ処理
 			this.setLoginId(parameters.get("userId").toString());
 			logger.info(Constants.INFO + "ログインユーザー：" + this.getLoginId());
-
-			service.execute();
 		}
 
-		/** 次回予定日 */
-		nextEventDayLabel = new Label("nextEventDay", "日付：2018/2/20(土)");
+			nextEventInfo = service.execute();
 
-		/** 次回予定時間 */
-		nextEventTime = new Label("nextEventTime", "時間：15:00～17:00");
+			/** 次回予定日 */
+			nextEventDayLabel = new Label("nextEventDay", (String)nextEventInfo.get("start_day"));
+
+			/** 次回予定時間 */
+			nextEventTime = new Label("nextEventTime",  (String)nextEventInfo.get("start_time"));
+
+
 
 		// 次回予定日
 		add(nextEventDayLabel);

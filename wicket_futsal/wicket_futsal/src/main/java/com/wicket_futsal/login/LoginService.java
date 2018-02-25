@@ -20,7 +20,7 @@ public class LoginService extends BaseService {
 	private static final Logger logger = Logger.getLogger(LoginService.class
 			.getName());
 
-	UserDao loginDao = new UserDao();
+	private static UserDao loginDao = new UserDao();
 
 	public PageParameters execute(PageParameters parameters) {
 		PageParameters result = new PageParameters();
