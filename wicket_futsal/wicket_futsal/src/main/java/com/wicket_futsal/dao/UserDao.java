@@ -20,6 +20,8 @@ public class UserDao extends BaseDao {
 	 */
 	public Map<String, Object> selectUser(UserDTO dto) throws SQLException {
 
+		openMybatisConfig();
+
 		// 設定ファイルを元に、 SqlSessionFactory を作成する
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder()
 				.build(mybatisConfig);
@@ -27,10 +29,13 @@ public class UserDao extends BaseDao {
 		Map<String, Object> result;
 
 		// SqlSessionFactory から SqlSession を生成する
-		try (SqlSession session = factory.openSession()) {
+		SqlSession session = factory.openSession();
+		try {
 			// SqlSession を使って SQL を実行する
-			result = session
-					.selectOne("futsal.mybatis.selectUser", dto);
+			result = session.selectOne("futsal.mybatis.selectUser", dto);
+		} finally {
+			session.close();
+			closeMybatisConfig();
 		}
 		return result;
 	}

@@ -38,7 +38,7 @@ public class HomePage extends BasePage {
 	public Label nextEventDayLabel;
 
 	/** 次回予定時間 */
-	public Label nextEventTime;
+	public Label nextEventTimeLabel;
 
 	/**
 	 * ホーム画面コンストラクタ
@@ -72,7 +72,7 @@ public class HomePage extends BasePage {
 			nextEventDayLabel = new Label("nextEventDay", (String)nextEventInfo.get("start_day"));
 
 			/** 次回予定時間 */
-			nextEventTime = new Label("nextEventTime",  (String)nextEventInfo.get("start_time"));
+			nextEventTimeLabel = new Label("nextEventTime",  (String)nextEventInfo.get("start_time"));
 
 
 
@@ -80,7 +80,7 @@ public class HomePage extends BasePage {
 		add(nextEventDayLabel);
 
 		// 次回予定時間
-		add(nextEventTime);
+		add(nextEventTimeLabel);
 
 
 	}
