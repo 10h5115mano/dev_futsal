@@ -1519,3 +1519,106 @@ Caused by: javax.net.ssl.SSLException: Received fatal alert: protocol_version
 	at org.eclipse.jgit.util.HttpSupport.response(HttpSupport.java:167)
 	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:462)
 	... 8 more
+
+!ENTRY org.eclipse.egit.ui 4 0 2018-03-13 07:11:47.340
+!MESSAGE https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+!STACK 1
+org.eclipse.core.runtime.CoreException: https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+	at org.eclipse.egit.ui.internal.fetch.FetchOperationUI.execute(FetchOperationUI.java:102)
+	at org.eclipse.egit.ui.internal.synchronize.SynchronizeFetchJob.run(SynchronizeFetchJob.java:74)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.eclipse.jgit.api.errors.TransportException: https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+	at org.eclipse.jgit.api.FetchCommand.call(FetchCommand.java:137)
+	at org.eclipse.egit.core.op.FetchOperation.run(FetchOperation.java:127)
+	at org.eclipse.egit.ui.internal.fetch.FetchOperationUI.execute(FetchOperationUI.java:99)
+	... 2 more
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:499)
+	at org.eclipse.jgit.transport.TransportHttp.openFetch(TransportHttp.java:308)
+	at org.eclipse.jgit.transport.FetchProcess.executeImp(FetchProcess.java:136)
+	at org.eclipse.jgit.transport.FetchProcess.execute(FetchProcess.java:122)
+	at org.eclipse.jgit.transport.Transport.fetch(Transport.java:1111)
+	at org.eclipse.jgit.api.FetchCommand.call(FetchCommand.java:128)
+	... 4 more
+Caused by: javax.net.ssl.SSLException: Received fatal alert: protocol_version
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:1959)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1077)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1312)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1339)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1323)
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:563)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:185)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1300)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:338)
+	at org.eclipse.jgit.util.HttpSupport.response(HttpSupport.java:167)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:462)
+	... 9 more
+!SUBENTRY 1 org.eclipse.egit.ui 4 0 2018-03-13 07:11:47.340
+!MESSAGE https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+	at org.eclipse.jgit.api.FetchCommand.call(FetchCommand.java:137)
+	at org.eclipse.egit.core.op.FetchOperation.run(FetchOperation.java:127)
+	at org.eclipse.egit.ui.internal.fetch.FetchOperationUI.execute(FetchOperationUI.java:99)
+	at org.eclipse.egit.ui.internal.synchronize.SynchronizeFetchJob.run(SynchronizeFetchJob.java:74)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/10h5115mano/dev_futsal.git: cannot open git-upload-pack
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:499)
+	at org.eclipse.jgit.transport.TransportHttp.openFetch(TransportHttp.java:308)
+	at org.eclipse.jgit.transport.FetchProcess.executeImp(FetchProcess.java:136)
+	at org.eclipse.jgit.transport.FetchProcess.execute(FetchProcess.java:122)
+	at org.eclipse.jgit.transport.Transport.fetch(Transport.java:1111)
+	at org.eclipse.jgit.api.FetchCommand.call(FetchCommand.java:128)
+	... 4 more
+Caused by: javax.net.ssl.SSLException: Received fatal alert: protocol_version
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:1959)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1077)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1312)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1339)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1323)
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:563)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:185)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1300)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:338)
+	at org.eclipse.jgit.util.HttpSupport.response(HttpSupport.java:167)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:462)
+	... 9 more
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2018-03-13 07:15:50.025
+!MESSAGE properties loading for project 'Servers'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2018-03-13 07:15:50.025
+!MESSAGE loading file 'catalina.properties'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2018-03-13 07:15:50.056
+!MESSAGE properties loading for project 'wicket_futsal'
+
+!ENTRY jp.gr.java_conf.ussiy.app.propedit 1 0 2018-03-13 07:15:50.056
+!MESSAGE loading file 'log4j.properties'
+
+!ENTRY org.eclipse.jface 2 0 2018-03-13 07:20:31.328
+!MESSAGE キーバインドの競合が発生しました。 通常のアクセラレーター操作を妨げる可能性があります。
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-03-13 07:20:31.328
+!MESSAGE ALT+CTRL+R の競合が発生しました:
+Binding(ALT+CTRL+R,
+	ParameterizedCommand(Command(AnyEdit.openFileFromTextEditor.command,カーソルの下のファイルを開く,
+		,
+		Category(AnyEdit.category,AnyEdit ツール,AnyEdit ツール・キー・バインド,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@562c94a5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+CTRL+R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.run,実行,
+		サーバーの実行,
+		Category(org.eclipse.wst.server.ui,サーバー,サーバー,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@39ce5e5f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.serverViewScope,,,system)

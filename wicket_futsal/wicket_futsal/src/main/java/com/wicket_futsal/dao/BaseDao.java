@@ -9,7 +9,7 @@ public class BaseDao {
 	public InputStream mybatisConfig;
 
 	/**
-	 * mybatis設定ファイルを閉じる
+	 * mybatis設定ファイルを開く
 	 *
 	 */
 	public void openMybatisConfig() {
