@@ -66,13 +66,13 @@ public class HomePage extends BasePage {
 			logger.info(Constants.INFO + "ログインユーザー：" + this.getLoginId());
 		}
 
-//			nextEventInfo = service.execute();
+			nextEventInfo = service.execute();
 
 			/** 次回予定日 */
-			nextEventDayLabel = new Label("nextEventDay", "test");//(String)nextEventInfo.get("start_day"));
+			nextEventDayLabel = new Label("nextEventDay", (String)nextEventInfo.get("start_day"));
 
 			/** 次回予定時間 */
-			nextEventTimeLabel = new Label("nextEventTime",  "test");//(String)nextEventInfo.get("start_time"));
+			nextEventTimeLabel = new Label("nextEventTime",  (String)nextEventInfo.get("start_time"));
 
 
 
