@@ -49,10 +49,7 @@ public class LoginPage  extends WebPage {
 	/** ログインパスワード */
 	PasswordTextField loginPassText;
 
-	/**
-	 * ログインボタン
-	 *
-	 * */
+	/** ログインボタン */
 	private Button loginButton = new Button("loginButton") {
 		private static final long serialVersionUID = -5971836288003545423L;
 

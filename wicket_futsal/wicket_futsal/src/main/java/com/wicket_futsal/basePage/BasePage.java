@@ -77,21 +77,8 @@ public abstract class BasePage extends WebPage implements Serializable {
 
 	};
 
-	/** フッタホームボタン */
-	private Button footerHomeButton = new Button("footerHome") {
-		private static final long serialVersionUID = 6739382416550965963L;
-
-		@Override
-		public void onSubmit() {
-
-			logger.info(Constants.INFO + "ホームボタン押下");
-
-			onSubmitHomeButton();
-		}
-	};
-
 	/**
-	 * ヘッダ・フッタ用 ホームボタン
+	 * ホームボタン
 	 */
 	public void onSubmitHomeButton() {
 		String loginId = this.getLoginId();
@@ -119,7 +106,6 @@ public abstract class BasePage extends WebPage implements Serializable {
 
 		add(headerForm);
 
-		footerForm.add(footerHomeButton);
 		add(footerForm);
 	}
 

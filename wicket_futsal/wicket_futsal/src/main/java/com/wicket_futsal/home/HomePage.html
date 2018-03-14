@@ -4,25 +4,33 @@
 </head>
 
 <wicket:link>
-    <link rel="stylesheet" type="text/css" href="HomePage.css"/>
+	<link rel="stylesheet" type="text/css" href="HomePage.css" />
 </wicket:link>
 
 <body>
-<wicket:extend>
+	<wicket:extend>
 
-	<h1>
-		<span wicket:id="wicketTitle" id="title">Page Title</span>
-	</h1>
-	<br>
+		<h1>
+			<span wicket:id="wicketTitle" id="title">Page Title</span>
+		</h1>
+		<br>
 
-		<span wicket:id="nextEventDay">nextEventDay</span><br>
+		開催日：<span wicket:id="nextEventDay"></span>
+		<br>
 
-		<span wicket:id="nextEventTime">nextEventTime</span><br>
+		時間：<span wicket:id="nextEventTime"></span>
+		<br>
+
+		<form wicket:id="participantForm">
+			<input wicket:id="joinButton" type="submit" value="参加" />
+			<input wicket:id="mayBeButton" type="submit" value="行けたら行く" />
+			<input wicket:id="notGoButton" type="submit" value="不参加" />
+		</form>
 
 
 
 
 
-</wicket:extend>
+	</wicket:extend>
 </body>
 </html>
