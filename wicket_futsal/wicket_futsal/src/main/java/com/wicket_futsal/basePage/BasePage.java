@@ -28,12 +28,8 @@ public abstract class BasePage extends WebPage implements Serializable {
 	/** 共通クラス ログインID */
 	private String loginId;
 
-	public BasePage() {
-		basePage();
-	}
-
 	public BasePage(final PageParameters params) {
-		basePage();
+		basePage(params);
 	}
 
 	/** エラーメッセージ */
@@ -69,16 +65,27 @@ public abstract class BasePage extends WebPage implements Serializable {
 
 			logger.info(Constants.INFO + "ログインボタン押下");
 
-			PageParameters parameters = new PageParameters();
-			LoginPage loginPage = new LoginPage(parameters);
+			onSubmitLoginButton();
+		}
 
-			setResponsePage(loginPage);
+	};
+
+	/** ヘッダログアウトボタン */
+	private Button headerLogoutButton = new Button("headerLogout") {
+		private static final long serialVersionUID = -4585865358198295889L;
+
+		@Override
+		public void onSubmit() {
+
+			logger.info(Constants.INFO + "ログアウトボタン押下");
+
+			onSubmitLogoutButton();
 		}
 
 	};
 
 	/**
-	 * ホームボタン
+	 * ホームボタン処理
 	 */
 	public void onSubmitHomeButton() {
 		String loginId = this.getLoginId();
@@ -95,14 +102,38 @@ public abstract class BasePage extends WebPage implements Serializable {
 	}
 
 	/**
+	 * ログインボタン処理
+	 */
+	public void onSubmitLoginButton() {
+		PageParameters parameters = new PageParameters();
+		LoginPage loginPage = new LoginPage(parameters);
+
+		setResponsePage(loginPage);
+	}
+
+	/**
+	 * ログアウトボタン処理
+	 */
+	public void onSubmitLogoutButton() {
+		PageParameters parameters = new PageParameters();
+		HomePage homePage = new HomePage(parameters);
+
+		setResponsePage(homePage);
+
+	}
+
+	/**
 	 * 共通処理
 	 */
-	private void basePage() {
+	private void basePage(final PageParameters parameters) {
 
 		add(errorMessage);
 
 		headerForm.add(headerHomeButton);
-		headerForm.add(headerLoginButton);
+
+		System.out.println("BasePage138:" + this.loginExistence(parameters));
+		headerForm.add(headerLoginButton.setVisible(!this.loginExistence(parameters)));
+		headerForm.add(headerLogoutButton.setVisible(this.loginExistence(parameters)));
 
 		add(headerForm);
 
@@ -124,4 +155,19 @@ public abstract class BasePage extends WebPage implements Serializable {
 		this.loginId = loginId;
 	}
 
+	/**
+	 * ログイン有無を確認する
+	 * @return 	true:ログインあり<br>
+	 * 			false:ログインなし
+	 */
+	public boolean loginExistence(final PageParameters parameters) {
+
+		if (parameters.get("userId").isEmpty() && null == this.getLoginId()) {
+			// ログインなし
+			return false;
+		}
+
+		// ログインあり
+		return true;
+	}
 }

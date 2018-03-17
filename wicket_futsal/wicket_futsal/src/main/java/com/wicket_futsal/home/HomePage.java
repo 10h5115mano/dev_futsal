@@ -34,6 +34,7 @@ public class HomePage extends BasePage {
 	/** Serviseクラス */
 	private static HomePageService service = new HomePageService();
 
+	/** 次回イベント情報 */
 	public Map<String, Object> nextEventInfo;
 
 	/** 次回予定日 */
@@ -43,7 +44,7 @@ public class HomePage extends BasePage {
 	public Label nextEventTimeLabel;
 
 	/** イベント参加者確認用フォーム */
-	private Form<String> form = new Form<String>("participantForm");
+	private Form<String> participantForm = new Form<String>("participantForm");
 
 	/** 参加ボタン */
 	private Button joinButton = new Button("joinButton") {
@@ -85,12 +86,14 @@ public class HomePage extends BasePage {
 	 */
 	public HomePage(final PageParameters parameters) {
 
+		super(parameters);
+
 		// Page Title
 		add(titleLabel);
 
 		logger.info(Constants.INFO + "ホームページを表示します。");
 
-		if (parameters.get("userId").isEmpty() && null == this.getLoginId()) {
+		if (loginExistence(parameters)) {
 
 			logger.info(Constants.INFO + "ログインしていません。");
 
@@ -102,8 +105,10 @@ public class HomePage extends BasePage {
 			// ログインユーザ処理
 			this.setLoginId(parameters.get("userId").toString());
 			logger.info(Constants.INFO + "ログインユーザー：" + this.getLoginId());
+
 		}
 
+		// 次回予定取得
 		nextEventInfo = service.execute();
 
 		/** 次回予定日 */
@@ -121,11 +126,11 @@ public class HomePage extends BasePage {
 		add(nextEventTimeLabel);
 
 		// 参加者ボタン群
-		form.add(joinButton);
-		form.add(mayBeButton);
-		form.add(notGoButton);
+		participantForm.add(joinButton);
+		participantForm.add(mayBeButton);
+		participantForm.add(notGoButton);
 
-		add(form);
+		add(participantForm.setVisible(loginExistence(parameters)));
 
 	}
 }

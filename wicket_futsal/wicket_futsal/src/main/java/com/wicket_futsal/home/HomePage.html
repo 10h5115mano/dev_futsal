@@ -21,16 +21,14 @@
 		時間：<span wicket:id="nextEventTime"></span>
 		<br>
 
-		<form wicket:id="participantForm">
-			<input wicket:id="joinButton" type="submit" value="参加" />
-			<input wicket:id="mayBeButton" type="submit" value="行けたら行く" />
-			<input wicket:id="notGoButton" type="submit" value="不参加" />
-		</form>
-
-
-
-
-
+		<!-- 表示制御 -->
+		<wicket:enclosure child="participantForm">
+			<form wicket:id="participantForm">
+				<input wicket:id="joinButton" type="submit" value="参加" />
+				<input wicket:id="mayBeButton" type="submit" value="行けたら行く" />
+				<input wicket:id="notGoButton" type="submit" value="不参加" />
+			</form>
+		</wicket:enclosure>
 	</wicket:extend>
 </body>
 </html>

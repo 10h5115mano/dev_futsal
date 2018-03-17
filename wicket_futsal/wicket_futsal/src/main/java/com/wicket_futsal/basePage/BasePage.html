@@ -4,7 +4,7 @@
 </head>
 
 <wicket:link>
-    <link rel="stylesheet" type="text/css" href="BasePage.css"/>
+	<link rel="stylesheet" type="text/css" href="BasePage.css" />
 </wicket:link>
 
 
@@ -12,8 +12,16 @@
 <div id="header">
 
 	<form wicket:id="headerForm">
-		<input wicket:id="headerHome" type="submit" value="HOME"/>
-		<input wicket:id="headerLogin" type="submit" value="LOGIN"/>
+		<input wicket:id="headerHome" type="submit" value="HOME" />
+
+		<wicket:enclosure child="headerLogin">
+			<input wicket:id="headerLogin" type="submit" value="LOGIN" />
+		</wicket:enclosure>
+
+		<wicket:enclosure child="headerLogout">
+			<input wicket:id="headerLogout" type="submit" value="LOGOUT" />
+		</wicket:enclosure>
+
 	</form>
 
 	<!-- エラーメッセージ -->
@@ -33,8 +41,7 @@
 <!---------------------------------------- フッタ ----------------------------------------->
 <div id="footer">
 
-	<form wicket:id="footerForm">
-	</form>
+	<form wicket:id="footerForm"></form>
 
 </div>
 <!---------------------------------------- フッタ ----------------------------------------->
