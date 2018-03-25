@@ -54,8 +54,17 @@ public class HomePage extends BasePage {
 		public void onSubmit() {
 
 			logger.info(Constants.INFO + "参加ボタン押下");
+
+			submitJoinButton();
 		}
 	};
+
+	/**
+	 * 参加ボタン押下処理
+	 */
+	public void submitJoinButton() {
+		service.submitJoinButton();
+	}
 
 	/** 行けたら行くボタン */
 	private Button mayBeButton = new Button("mayBeButton") {
@@ -65,8 +74,17 @@ public class HomePage extends BasePage {
 		public void onSubmit() {
 
 			logger.info(Constants.INFO + "行けたら行くボタン押下");
+
+			submitMayBeButton();
 		}
 	};
+
+	/**
+	 * 行けたら行くボタン押下処理
+	 */
+	public void submitMayBeButton() {
+		service.submitMayBeButton();
+	}
 
 	/** 不参加ボタン */
 	private Button notGoButton = new Button("notGoButton") {
@@ -75,9 +93,18 @@ public class HomePage extends BasePage {
 		@Override
 		public void onSubmit() {
 
-			logger.info(Constants.INFO + "参加ボタン押下");
+			logger.info(Constants.INFO + "不参加ボタン押下");
+
+			submitNotGoButton();
 		}
 	};
+
+	/**
+	 * 不参加ボタン押下処理
+	 */
+	public void submitNotGoButton() {
+		service.submitNotGoButton();
+	}
 
 	/**
 	 * ホーム画面コンストラクタ
@@ -95,16 +122,12 @@ public class HomePage extends BasePage {
 
 		if (loginExistence(parameters)) {
 
-			logger.info(Constants.INFO + "ログインしていません。");
-
 			// 未ログイン処理
 			baseService.notLoginExecute(parameters);
 
 		} else {
 
 			// ログインユーザ処理
-			this.setLoginId(parameters.get("userId").toString());
-			logger.info(Constants.INFO + "ログインユーザー：" + this.getLoginId());
 
 		}
 

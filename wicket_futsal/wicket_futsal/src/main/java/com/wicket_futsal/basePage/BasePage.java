@@ -10,8 +10,6 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.wicket_futsal.common.Constants;
-import com.wicket_futsal.home.HomePage;
-import com.wicket_futsal.login.LoginPage;
 
 /**
  * 共通テンプレート用のページクラスです。
@@ -24,6 +22,9 @@ public abstract class BasePage extends WebPage implements Serializable {
 
 	private static final Logger logger = Logger.getLogger(BasePage.class
 			.getName());
+
+	/** 共通Serviseクラス */
+	private static BaseService baseService = new BaseService();
 
 	/** 共通クラス ログインID */
 	private String loginId;
@@ -56,6 +57,13 @@ public abstract class BasePage extends WebPage implements Serializable {
 		}
 	};
 
+	/**
+	 * ホームボタン処理
+	 */
+	public void onSubmitHomeButton() {
+		setResponsePage(baseService.onSubmitHomeButton(this.getLoginId()));
+	}
+
 	/** ヘッダログインボタン */
 	private Button headerLoginButton = new Button("headerLogin") {
 		private static final long serialVersionUID = -8020517682442280795L;
@@ -69,6 +77,13 @@ public abstract class BasePage extends WebPage implements Serializable {
 		}
 
 	};
+
+	/**
+	 * ログインボタン処理
+	 */
+	public void onSubmitLoginButton() {
+		setResponsePage(baseService.onSubmitLoginButton());
+	}
 
 	/** ヘッダログアウトボタン */
 	private Button headerLogoutButton = new Button("headerLogout") {
@@ -85,41 +100,10 @@ public abstract class BasePage extends WebPage implements Serializable {
 	};
 
 	/**
-	 * ホームボタン処理
-	 */
-	public void onSubmitHomeButton() {
-		String loginId = this.getLoginId();
-
-		if (null != loginId) {
-			PageParameters parameters = new PageParameters();
-			parameters.add("userId", loginId);
-			HomePage homePage = new HomePage(parameters);
-
-			setResponsePage(homePage);
-		} else {
-			setResponsePage(HomePage.class);
-		}
-	}
-
-	/**
-	 * ログインボタン処理
-	 */
-	public void onSubmitLoginButton() {
-		PageParameters parameters = new PageParameters();
-		LoginPage loginPage = new LoginPage(parameters);
-
-		setResponsePage(loginPage);
-	}
-
-	/**
 	 * ログアウトボタン処理
 	 */
 	public void onSubmitLogoutButton() {
-		PageParameters parameters = new PageParameters();
-		HomePage homePage = new HomePage(parameters);
-
-		setResponsePage(homePage);
-
+		setResponsePage(baseService.onSubmitLogoutButton());
 	}
 
 	/**
@@ -127,13 +111,24 @@ public abstract class BasePage extends WebPage implements Serializable {
 	 */
 	private void basePage(final PageParameters parameters) {
 
+		// ログイン有無確認
+		if (loginExistence(parameters)) {
+
+			this.setLoginId(parameters.get("userId").toString());
+			logger.info(Constants.INFO + "ログインユーザー：" + this.getLoginId());
+
+		} else {
+			logger.info(Constants.INFO + "ログインしていません。");
+		}
+
 		add(errorMessage);
 
 		headerForm.add(headerHomeButton);
 
-		System.out.println("BasePage138:" + this.loginExistence(parameters));
-		headerForm.add(headerLoginButton.setVisible(!this.loginExistence(parameters)));
-		headerForm.add(headerLogoutButton.setVisible(this.loginExistence(parameters)));
+		headerForm.add(headerLoginButton.setVisible(!this
+				.loginExistence(parameters)));
+		headerForm.add(headerLogoutButton.setVisible(this
+				.loginExistence(parameters)));
 
 		add(headerForm);
 
@@ -157,8 +152,9 @@ public abstract class BasePage extends WebPage implements Serializable {
 
 	/**
 	 * ログイン有無を確認する
-	 * @return 	true:ログインあり<br>
-	 * 			false:ログインなし
+	 *
+	 * @return true:ログインあり<br>
+	 *         false:ログインなし
 	 */
 	public boolean loginExistence(final PageParameters parameters) {
 

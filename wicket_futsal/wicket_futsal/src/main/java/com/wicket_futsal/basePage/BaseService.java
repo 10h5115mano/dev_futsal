@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.wicket_futsal.common.Constants;
+import com.wicket_futsal.home.HomePage;
+import com.wicket_futsal.login.LoginPage;
 
 public class BaseService {
 
@@ -18,4 +20,41 @@ public class BaseService {
 
 	}
 
+	/**
+	 * ホームボタン処理
+	 */
+	public HomePage onSubmitHomeButton(String loginId) {
+
+		if (null != loginId) {
+			PageParameters parameters = new PageParameters();
+			parameters.add("userId", loginId);
+			HomePage homePage = new HomePage(parameters);
+
+			return homePage;
+		} else {
+			return new HomePage(new PageParameters());
+		}
+	}
+
+	/**
+	 * ログインボタン処理
+	 */
+	public LoginPage onSubmitLoginButton() {
+		PageParameters parameters = new PageParameters();
+		LoginPage loginPage = new LoginPage(parameters);
+
+		return loginPage;
+	}
+
+	/**
+	 * ログアウトボタン処理
+	 * @return
+	 */
+	public HomePage onSubmitLogoutButton() {
+		PageParameters parameters = new PageParameters();
+		HomePage homePage = new HomePage(parameters);
+
+		return homePage;
+
+	}
 }

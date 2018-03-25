@@ -17,5 +17,6 @@
   <mappers>
     <mapper resource="UserDao.xml"/>
     <mapper resource="EventDao.xml"/>
+    <mapper resource="EventParticipantDao.xml"/>
   </mappers>
 </configuration>
