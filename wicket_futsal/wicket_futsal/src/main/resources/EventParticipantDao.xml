@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="futsal.mybatis">
+
+	<select id="selectJoinEvent">
+    SELECT
+      EVENT_ID
+      , USER_ID
+      , JOIN_CODE
+      , UPDATE_DATE
+      , UPDATE_USER
+      , INSERT_DATE
+      , INSERT_USER
+      , DELETE_FLG
+    FROM
+      EVENT_PARTICIPANT;
+	</select>
+
+	<insert id="insertJoinEvent" parameterType="com.wicket_futsal.dto.EventParticipantDTO">
+    INSERT
+    INTO EVENT_PARTICIPANT(
+      EVENT_ID
+      , USER_ID
+      , JOIN_CODE
+      , UPDATE_DATE
+      , UPDATE_USER
+      , INSERT_DATE
+      , INSERT_USER
+      , DELETE_FLG
+    )
+    VALUES (
+      1
+      , 'testuser'
+      , #{joinCode}
+      , CURRENT_TIMESTAMP
+      , 'testuser'
+      , CURRENT_TIMESTAMP
+      , 'testuser'
+      , '0'
+    );
+	</insert>
+
+</mapper>
