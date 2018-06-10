@@ -11,6 +11,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import com.wicket_futsal.basePage.BasePage;
 import com.wicket_futsal.basePage.BaseService;
 import com.wicket_futsal.common.Constants;
+import com.wicket_futsal.dto.EventParticipantDTO;
 
 /**
  * ホーム画面
@@ -63,7 +64,11 @@ public class HomePage extends BasePage {
 	 * 参加ボタン押下処理
 	 */
 	public void submitJoinButton() {
-		service.submitJoinButton();
+		EventParticipantDTO dto = new EventParticipantDTO();
+
+		dto.setJoinCode("1");
+
+		service.submitPresenceOrAbsenceButton(dto);
 	}
 
 	/** 行けたら行くボタン */
@@ -83,7 +88,11 @@ public class HomePage extends BasePage {
 	 * 行けたら行くボタン押下処理
 	 */
 	public void submitMayBeButton() {
-		service.submitMayBeButton();
+		EventParticipantDTO dto = new EventParticipantDTO();
+
+		dto.setJoinCode("2");
+
+		service.submitPresenceOrAbsenceButton(dto);
 	}
 
 	/** 不参加ボタン */
@@ -103,7 +112,11 @@ public class HomePage extends BasePage {
 	 * 不参加ボタン押下処理
 	 */
 	public void submitNotGoButton() {
-		service.submitNotGoButton();
+		EventParticipantDTO dto = new EventParticipantDTO();
+
+		dto.setJoinCode("2");
+
+		service.submitPresenceOrAbsenceButton(dto);
 	}
 
 	/**
