@@ -115,7 +115,7 @@ public abstract class BasePage extends WebPage implements Serializable {
 		if (loginExistence(parameters)) {
 
 			this.setLoginId(parameters.get("userId").toString());
-			logger.info(Constants.INFO + "ログインユーザー：" + this.getLoginId());
+			logger.info(Constants.INFO + "ログインユーザ：" + this.getLoginId());
 
 		} else {
 			logger.info(Constants.INFO + "ログインしていません。");

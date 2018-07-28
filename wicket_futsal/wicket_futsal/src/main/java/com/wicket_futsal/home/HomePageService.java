@@ -45,9 +45,25 @@ public class HomePageService extends BaseService {
 	public void submitPresenceOrAbsenceButton(EventParticipantDTO dto) {
 		logger.info(Constants.INFO + "HomePageService.submitJoinButton:start");
 
-		try {
+		Map<String, Object> joinDto;
 
-			eventParticipantDao.insertJoinEvent(dto);
+		try {
+			logger.info(Constants.INFO + dto.getUserId() + "の参加有無を検索します。");
+			joinDto = eventParticipantDao.selectJoinUser(dto);
+
+			if (joinDto == null) {
+				logger.info(Constants.INFO + dto.getUserId() + "の参加有無を新規登録します。");
+
+				// 新規登録
+				int ret = eventParticipantDao.insertJoinEvent(dto);
+				logger.info(Constants.INFO + ret + "件の登録を行いました。");
+			} else {
+				logger.info(Constants.INFO + joinDto.get("user_id")
+						+ "の参加有無を更新します。");
+
+				// 更新
+
+			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

@@ -14,9 +14,9 @@ public class BaseService {
 			.getName());
 
 	public void notLoginExecute(PageParameters parameters) {
-		logger.info(Constants.INFO + "BaseService.notExecute:start");
+		logger.info(Constants.INFO + "BaseService.notLoginExecute:start");
 
-		logger.info(Constants.INFO + "BaseService.notExecute:end");
+		logger.info(Constants.INFO + "BaseService.notLoginExecute:end");
 
 	}
 

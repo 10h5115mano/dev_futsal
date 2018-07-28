@@ -18,6 +18,23 @@
       EVENT_PARTICIPANT;
 	</select>
 
+	<select id="selectJoinUser" parameterType="com.wicket_futsal.dto.EventParticipantDTO" resultType="Map">
+    SELECT
+      EVENT_ID
+      , USER_ID
+      , JOIN_CODE
+      , UPDATE_DATE
+      , UPDATE_USER
+      , INSERT_DATE
+      , INSERT_USER
+      , DELETE_FLG
+    FROM
+      EVENT_PARTICIPANT
+    WHERE
+      EVENT_ID = #{eventId}
+      AND USER_ID = #{userId};
+	</select>
+
 	<insert id="insertJoinEvent" parameterType="com.wicket_futsal.dto.EventParticipantDTO">
     INSERT
     INTO EVENT_PARTICIPANT(
@@ -31,13 +48,13 @@
       , DELETE_FLG
     )
     VALUES (
-      1
-      , 'testuser'
+      #{eventId}
+      , #{userId}
       , #{joinCode}
       , CURRENT_TIMESTAMP
-      , 'testuser'
+      , #{userId}
       , CURRENT_TIMESTAMP
-      , 'testuser'
+      , #{userId}
       , '0'
     );
 	</insert>

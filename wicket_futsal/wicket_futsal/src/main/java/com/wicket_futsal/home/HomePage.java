@@ -47,6 +47,9 @@ public class HomePage extends BasePage {
 	/** イベント参加者確認用フォーム */
 	private Form<String> participantForm = new Form<String>("participantForm");
 
+	/** ログインID */
+	public String loginId;
+
 	/** 参加ボタン */
 	private Button joinButton = new Button("joinButton") {
 		private static final long serialVersionUID = -4912279695605489493L;
@@ -54,7 +57,7 @@ public class HomePage extends BasePage {
 		@Override
 		public void onSubmit() {
 
-			logger.info(Constants.INFO + "参加ボタン押下");
+			logger.info(Constants.INFO + loginId + ":参加ボタン押下");
 
 			submitJoinButton();
 		}
@@ -66,6 +69,8 @@ public class HomePage extends BasePage {
 	public void submitJoinButton() {
 		EventParticipantDTO dto = new EventParticipantDTO();
 
+		dto.setEventId((Integer)nextEventInfo.get("event_id"));
+		dto.setUserId(loginId);
 		dto.setJoinCode("1");
 
 		service.submitPresenceOrAbsenceButton(dto);
@@ -90,6 +95,8 @@ public class HomePage extends BasePage {
 	public void submitMayBeButton() {
 		EventParticipantDTO dto = new EventParticipantDTO();
 
+		dto.setEventId((Integer)nextEventInfo.get("event_id"));
+		dto.setUserId(loginId);
 		dto.setJoinCode("2");
 
 		service.submitPresenceOrAbsenceButton(dto);
@@ -114,7 +121,9 @@ public class HomePage extends BasePage {
 	public void submitNotGoButton() {
 		EventParticipantDTO dto = new EventParticipantDTO();
 
-		dto.setJoinCode("2");
+		dto.setEventId((Integer)nextEventInfo.get("event_id"));
+		dto.setUserId(loginId);
+		dto.setJoinCode("3");
 
 		service.submitPresenceOrAbsenceButton(dto);
 	}
@@ -135,12 +144,14 @@ public class HomePage extends BasePage {
 
 		if (loginExistence(parameters)) {
 
-			// 未ログイン処理
-			baseService.notLoginExecute(parameters);
+			// ログインユーザ処理
+			loginId = parameters.get("userId").toString();
+			logger.info(Constants.INFO + "HomePageログインユーザ:" + loginId);
 
 		} else {
 
-			// ログインユーザ処理
+			// 未ログイン処理
+			baseService.notLoginExecute(parameters);
 
 		}
 
